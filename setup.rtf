@@ -42,9 +42,27 @@ npm install --save-dev ts-node typescript @types/node @types/mocha\
 
 \fs31\fsmilli15750 \cf2 mv hardhat.config.js hardhat.config.ts\
 \
+// ******* TESTS *********\
+// Option 1: Ethers & Waffle & OpenZeppelin\
+// Install Ethers, Waffle, and the Hardhat plugin\
+\pard\pardeftab720\partightenfactor0
+
+\fs32 \cf2 \
+// Test with waffle & ethers\
+// npm install --save-dev ethers @nomiclabs/hardhat-waffle ethereum-waffle\
+\
+// Test with Truffle & web3\
+npm install --save-dev @nomiclabs/hardhat-truffle5 @nomiclabs/hardhat-web3 web3\
+\
+npm install --save-dev @openzeppelin/test-helpers\
+npm install --save-dev @openzeppelin/test-environment\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs31\fsmilli15750 \cf2 \
+\
 \pard\pardeftab720\partightenfactor0
 \cf2 \
-\
 \
 \
 \
