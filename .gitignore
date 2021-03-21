@@ -1,6 +1,7 @@
 #Hardhat files
 cache
 artifacts
+build
 
 #General
 node_modules
