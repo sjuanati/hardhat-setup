@@ -1,8 +1,18 @@
+require("@nomiclabs/hardhat-waffle");  // it depends on hardhat-ethers, so adding both isn't necessary
+
+module.exports = {
+    solidity: "0.7.6",
+};
+
+
+
+
 // Non-TypeScript
 // export default {
 //     solidity: "0.7.6",
 // };
 
+/*
 // TypeScript:
 import { HardhatUserConfig } from "hardhat/types";
 //import "@nomiclabs/hardhat-waffle";  //required to support 'import {ethers} from 'hardhat''
@@ -13,3 +23,4 @@ const config: HardhatUserConfig = {
     },
 };
 export default config;
+*/
