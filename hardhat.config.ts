@@ -1,9 +1,13 @@
 // it depends on hardhat-ethers, so adding both isn't necessary
-require("@nomiclabs/hardhat-waffle");
+//require("@nomiclabs/hardhat-waffle");
+import "@nomiclabs/hardhat-waffle"; // TS
 // .env variables
-require('dotenv').config();
+//require('dotenv').config();
+import * as dotenv from 'dotenv'; // TS
+dotenv.config();
 // contract verification
-require("@nomiclabs/hardhat-etherscan");
+// require("@nomiclabs/hardhat-etherscan");
+import "@nomiclabs/hardhat-etherscan";
 
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
