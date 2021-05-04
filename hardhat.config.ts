@@ -1,7 +1,19 @@
-require("@nomiclabs/hardhat-waffle");  // it depends on hardhat-ethers, so adding both isn't necessary
+// it depends on hardhat-ethers, so adding both isn't necessary
+require("@nomiclabs/hardhat-waffle");
+// env variables
+require('dotenv').config();
+
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
+const MNEMONIC = process.env.MNEMONIC;
 
 module.exports = {
     solidity: "0.7.6",
+    networks: {
+        ropsten: {
+            url: `https://ropsten.infura.io/v3/${INFURA_API_KEY}`,
+            accounts: [`0x${MNEMONIC}`]
+        }
+    }
 };
 
 
