@@ -1,6 +1,6 @@
 // it depends on hardhat-ethers, so adding both isn't necessary
 //require("@nomiclabs/hardhat-waffle");
-import "@nomiclabs/hardhat-waffle"; // TS
+import "@nomiclabs/hardhat-waffle"; // TS (required to support 'import {ethers} from 'hardhat'')
 // .env variables
 //require('dotenv').config();
 import * as dotenv from 'dotenv'; // TS
@@ -38,7 +38,7 @@ module.exports = {
 /*
 // TypeScript:
 import { HardhatUserConfig } from "hardhat/types";
-//import "@nomiclabs/hardhat-waffle";  //required to support 'import {ethers} from 'hardhat''
+//import "@nomiclabs/hardhat-waffle";  
 import "@nomiclabs/hardhat-truffle5";
 const config: HardhatUserConfig = {
     solidity: {
