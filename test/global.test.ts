@@ -2,7 +2,8 @@ import { expect } from "chai";
 const { ethers } = require("hardhat");
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
 import { BigNumber } from "@ethersproject/bignumber";
-
+import { getTxCost } from "./../utils";
+const { waffle } = require("hardhat");
 
 describe("Global", function () {
 
@@ -12,6 +13,7 @@ describe("Global", function () {
     let user1: SignerWithAddress;
     let user2: SignerWithAddress;
     let addrs: SignerWithAddress[];
+    const provider = waffle.provider;
 
     beforeEach(async function () {
         Global = await ethers.getContractFactory("Global");
@@ -35,16 +37,24 @@ describe("Global", function () {
     // Bytes
     it("should set the title", async function () {
         await global.setTitle(ethers.utils.formatBytes32String("Hello 2"));
-        const b32Title = await global.getTitle();
+        const b32Title: String = await global.getTitle();
         expect(ethers.utils.parseBytes32String(b32Title)).to.be.equal("Hello 2");
     });
 
-    // Value transfer (eth)
+    // Balances, Value transfer (eth)
     it("should transfer eth", async function () {
-        const beforeBalance: BigNumber = await global.getBalance();
-        expect(beforeBalance).to.be.equal(0);
-        await global.connect(user1).deposit({value: 10});
+        const beforeContractBalance: BigNumber = await global.getBalance();
+        const beforeUserBalance: BigNumber = await user2.getBalance();
+        
+        expect(beforeContractBalance).to.be.equal(0);
+
+        const tx = await global.connect(user2).deposit({value: 10});
+        const txCost = await getTxCost(tx);
+
         const afterBalance: BigNumber = await global.getBalance();
+        const afterUserBalance: BigNumber = (await user2.getBalance()).add(txCost);
+
+        expect(afterUserBalance).to.be.equal(beforeUserBalance.sub(10));
         expect(afterBalance).to.be.equal(10);
     });
 
