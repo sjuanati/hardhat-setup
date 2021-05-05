@@ -73,7 +73,11 @@ contract Global {
         uint256 _birthday,
         Status _status
     ) external {
+        require(person[msg.sender].age == 0, "already exists");
+        require(_age > 0, "must have an age>0");
+
         people.push(Person(_name, _age, _birthday, _status));
+        person[msg.sender] = people[people.length - 1];
     }
 
     function getPeople() public view returns (Person[] memory) {
@@ -83,4 +87,15 @@ contract Global {
     function getBalance() external view returns (uint256) {
         return payable(address(this)).balance;
     }
+
+    function getTwoValues(string calldata _val1, uint256 _val2)
+        external
+        pure
+        returns (string calldata val1, uint256 val2)
+    {
+        val1 = _val1;
+        val2 = _val2;
+    }
+
+    receive() external payable {}
 }
